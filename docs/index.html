@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Template</title>
+        <title>LiME-TM</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -31,31 +31,99 @@
 
                 <section data-auto-animate>
                     <span class="menu-title" style="display: none">Overview</span>
-                    <h3 class="r-fit-text">A Template Talk Slides with no Title</h3>
-                    <p class="name" style="font-size: 25px;">Han Wu and etc.</p>
+                    <h3 class="r-fit-text">LiME-TM: A Lightning-fast and Memory-Efficient ML Framework <br> for On-Device Training on MCUs</h3>
+                    <p class="name" style="font-size: 20px;">Han Wu, Shengyu Duan and Tousif</p>
                     <div class="r-hstack">
-                        <div>
-                            <a href="https://wuhanstudio.cc">
-                              <img align="center" width=55% src="https://github-readme-stats.wuhanstudio.vercel.app/api?username=wuhanstudio&include_all_commits=true&show_icons=true&hide=issues&count_private=true" />
-                            </a>
-                            <a href="https://wuhanstudio.uk">
-                              <img align="center" width=40% src="https://github-readme-stats.wuhanstudio.vercel.app/api/top-langs/?username=wuhanstudio&layout=compact&langs_count=6" />
-                            </a>
-                        </div>
+                        <img align="center" width=80% src="images/mcu.png" />
                     </div>
-                    <p style="font-size: 22px;"><i class="fab fa-github"></i> &nbsp; <a href="https://github.com/wuhanstudio/talk-template">Source Code</a></p>
 
                     <aside class="notes">
                     </aside>
                 </section>
 
                 <section>
+                    <h3>EMG and Why TM?</h3>
+                </section>
+
+                <section>
+                    <h3>Vanilla TM: Memory Consumption</h3>
+                </section>
+
+                <section data-auto-animate>
+                    <div class="r-vstack">
+                        <div class="r-hstack">
+                            <img width=40% src="images/cube.png" />
+                            <img width=35% src="images/mnist.png" style="margin-left: 10%;"/>
+                        </div>
+                        <ul style="font-size: 30px;">
+                            <li  class="fragment">100 clauses</li>
+                            <li class="fragment">10 classes</li>
+                            <li class="fragment">28 x 28 pixels</li>
+                            <li class="fragment">8 bits</li>
+                        </ul>
+                        <p class="fragment" style="font-size: 30px;">100 clauses x 10 classes x 28 x 28 pixels x 8 bits<br/> = 12,544,000 Bytes (~ 12MB)</p>
+                        <div class="fragment" style="font-size: 30px;">
+                            <ul>
+                                <li>On-Device Training: 20 KB SRAM</li>
+                                <li>On-Device Inference: 2 KB SRAM</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <section> 
+                        <p class="attribution" style="font-size: 20px;">Vanilla TM (12 MB) --> LiME-TM Pruning (ESP32 520 KB)</p>
+                    </section>
+                    <section>
+                        <h3>LiME-TM: Pruning (ESP32)</h3>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <p>Vanilla TM (12 MB) --> LiME-TM Pruning (ESP32 520 KB) --> LiME-TM Compiler (STM32F4 192 KB)</p>
+                    </section>
+                    <section>
+                        <h3>LiME-TM: Compiler (STM32F4)</h3>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <p>Vanilla TM (12 MB) --> LiME-TM Pruning (ESP32 520 KB) --> LiME-TM Compiler (STM32F4 192 KB) --> LiME-TM Compression (STM32L4 128 KB)</p>
+                    </section>
+                    <section>
+                        <h3>LiME-TM: Compression (STM32L4)</h3>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <p>Vanilla TM (12 MB) --> LiME-TM Pruning (ESP32 520 KB) --> LiME-TM Compiler (STM32F4 192 KB) --> LiME-TM Compression (STM32L4 128 KB) --> LiME-TM Bare-metal (STM32F103 20 KB)</p>
+                    </section>
+                    <section>
+                        <h3>LiME-TM: Bare-metal (STM32F103)</h3>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <p>Vanilla TM (12 MB) --> LiME-TM Pruning (ESP32 520 KB) --> LiME-TM Compiler (STM32F4 192 KB) --> LiME-TM Compression (STM32L4 128 KB) --> LiME-TM Bare-metal (STM32F103 20 KB) --> LiME-TM Inference-Only (Arduino 2 KB)</p>
+                    </section>
+                    <section>
+                        <h3>LiME-TM: Inference Only (Arduino)</h3>
+                    </section>
+                </section>
+
+                <section>
                     <h2>Thanks</h2>
                     <div class="r-vstack">
-                        <p><a href="https://temp.wuhanstudio.uk/">https://temp.wuhanstudio.uk</a></p>
+                        <p><a href="https://lime-tm.wuhanstudio.uk/">https://lime-tm.wuhanstudio.uk</a></p>
                     </div>
                     <img src="images/qrcode.png" width="25%" />
-                    <p style="font-size: 22px;"><i class="fab fa-github"></i> &nbsp; <a href="https://github.com/wuhanstudio/talk-template">Source Code</a></p>
+                    <p style="font-size: 22px;"><i class="fab fa-github"></i> &nbsp; <a href="https://github.com/wuhanstudio/tsetlin.py">Source Code</a></p>
                 </section>
 
             </div>
