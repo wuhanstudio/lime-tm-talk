@@ -44,6 +44,10 @@
 
                 <section>
                     <h3>Why is On-Device Training Important?</h3>
+
+                    <aside class="notes">
+                        First of all, why is on-device training important? Why do we need to train on MCUs?
+                    </aside>
                 </section>
 
                 <section>
@@ -54,16 +58,24 @@
                         <li>User Personalization</li>
                     </ul>
                     <img width=80% src="images/emg.png" class="fragment" />
+
+                    <aside class="notes">
+                        The main reason is data distribution shift. If we train a model on a PC and then deploy the model on MCUs, the real-world data distribution may not be the same as the training data for several reasons: the environment is evolving, sensors will degrade over time, and people are different. For example, in the EMG dataset, the project Shengyu has been working on. The sensor measures the electrical activity of muscles and predicts the hand gesture. If we train the model on the server using data from a group of users, the model accuracy is 85%, but if we continue to train the model on the device using personal data, the accuracy can be improved to 96%. If we personalize the model for each user, we can achieve much better performance. The problem here is personal data is sensitive, and it cannot be uploaded to the server for training. We need to train on the device.
+                    </aside>
                 </section>
 
                 <section>
                     <h3>Why is On-Device Training Challenging?</h3>
+
+                    <aside class="notes">
+                        So, on-device training is important, but it is also very challenging. 
+                    </aside>
                 </section>
 
                 <section>
                     <h3>Resource Constraints</h3>
                     <ul style="font-size: 25px;">
-                        <li>Memory: MBs to KBs</li>
+                        <li>Memory: GBs to KBs</li>
                         <li>Compute: GHz to MHz</li>
                         <li>Energy: W to mW</li>
                     </ul>
@@ -72,10 +84,22 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <img width=80% src="images/limetm.png" class="fragment" />
                     </div>
+
+                    <aside class="notes">
+                        The main challenge is resource constraints. For example, my laptop has 8GB of memory, but a MCU has only KB of memory. My laptop has a 3GHz CPU, but a MCUs run at MHz. My laptop or cloud servers also has a stable power supply, but a MCU is usually powered by a small battery, so its performance is way worse than a laptop or cloud servers.
+
+                        As a result, TensorFlow Lite only support training on IOS, Android, but not MCUs. You know, IOS and Android uses Unix and Linux Operating System, there is no way to run Linux on a MCU, such as ESP32. 
+                        
+                        We also did a review of on-device training frameworks, and as you can see here, our framework requires much less memory. You may wonder, this one seems to be the best, but it is a very small neural network with only 1 hidden layer and 10 neurons. The accuracy won't be very high. You know, theoretically we can have a neural network with only 1 neuron, it is memory efficient but not very helpful. For a useful 2D conv NN, it requires much more memory. Our framework does not hurt the accuracy. For inference, we have achieved state-of-the-art.
+                    </aside>
                 </section>
 
                 <section>
                     <h3>Can Vanilla TM do On-Device Training?</h3>
+
+                    <aside class="notes">
+                        The next question is, can vanilla TM do on-device training? Because our framework is based on Tsetlin Machine. If vanilla TM can do on-device training, our framework will be unnecessary.
+                    </aside>
                 </section>
 
                 <section data-auto-animate>
@@ -98,6 +122,9 @@
                         </ul>
                         <p class="fragment" style="font-size: 30px;">100 clauses x 10 classes x 28 x 28 pixels x 8 bits<br/> = 12,544,000 Bytes (~ 12MB)</p>
                     </div>
+
+                    <aside class="notes">
+                        If we train a VTM on MNIST dataset, we can do a calculation.
                 </section>
 
                 <section data-background-image="images/vtm.png" data-background-size="100%">
