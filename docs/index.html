@@ -42,18 +42,52 @@
                 </section>
 
                 <section>
-                    <h3>EMG and Why TM?</h3>
+                    <h3>Why is On-Device Training Important?</h3>
                 </section>
 
                 <section>
-                    <h3>Vanilla TM: Memory Consumption</h3>
+                    <h3>Data Distribution Shift</h3>
+                    <ul>
+                        <li>Evolving Environment</li>
+                        <li>Sensor Degradation</li>
+                        <li>User Personalization</li>
+                    </ul>
+                    <img width=80% src="images/emg.png" class="fragment" />
+                </section>
+
+                <section>
+                    <h3>Why is On-Device Training Challenging?</h3>
+                </section>
+
+                <section>
+                    <h3>Resource Constraints</h3>
+                    <ul style="font-size: 25px;">
+                        <li>Memory: MBs to KBs</li>
+                        <li>Compute: GHz to MHz</li>
+                        <li>Energy: W to mW</li>
+                    </ul>
+                    <div class="r-hstack">
+                        <img width=80% src="images/tflm.png" class="fragment" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <img width=80% src="images/limetm.png" class="fragment" />
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Can Vanilla TM do On-Device Training?</h3>
                 </section>
 
                 <section data-auto-animate>
                     <div class="r-vstack">
                         <div class="r-hstack">
-                            <img width=40% src="images/cube.png" />
-                            <img width=35% src="images/mnist.png" style="margin-left: 10%;"/>
+                            <div class="r-vstack">
+                                <img width=60% src="images/cube.png" />
+                                <p style="font-size: 30px;">Vanilla TM</p>
+                            </div>
+                            <div class="r-vstack fragment">
+                                <img width=65% src="images/mnist.png" style="margin-left: 10%;"/>
+                                <p style="font-size: 30px;">MNIST Dataset (60k images)</p>
+                            </div>
                         </div>
                         <ul style="font-size: 30px;">
                             <li  class="fragment">100 clauses</li>
@@ -62,58 +96,59 @@
                             <li class="fragment">8 bits</li>
                         </ul>
                         <p class="fragment" style="font-size: 30px;">100 clauses x 10 classes x 28 x 28 pixels x 8 bits<br/> = 12,544,000 Bytes (~ 12MB)</p>
-                        <div class="fragment" style="font-size: 30px;">
-                            <ul>
-                                <li>On-Device Training: 20 KB SRAM</li>
-                                <li>On-Device Inference: 2 KB SRAM</li>
-                            </ul>
-                        </div>
                     </div>
                 </section>
 
-                <section>
-                    <section> 
-                        <p class="attribution" style="font-size: 20px;">Vanilla TM (12 MB) --> LiME-TM Pruning (ESP32 520 KB)</p>
-                    </section>
-                    <section>
-                        <h3>LiME-TM: Pruning (ESP32)</h3>
-                    </section>
-
+                <section data-background-image="images/vtm.png" data-background-size="100%">
                 </section>
 
                 <section>
-                    <section>
-                        <p>Vanilla TM (12 MB) --> LiME-TM Pruning (ESP32 520 KB) --> LiME-TM Compiler (STM32F4 192 KB)</p>
+                    <section data-background-image="images/esp32.png" data-background-size="100%">
                     </section>
                     <section>
-                        <h3>LiME-TM: Compiler (STM32F4)</h3>
+                        <h3>LiME-TM: Model Pruning</h3>
+                    </section>
+                    <section data-background-video="images/ESP32.mp4" data-background-video data-background-video-muted data-menu-title="ESP32 Demo">
                     </section>
                 </section>
 
                 <section>
-                    <section>
-                        <p>Vanilla TM (12 MB) --> LiME-TM Pruning (ESP32 520 KB) --> LiME-TM Compiler (STM32F4 192 KB) --> LiME-TM Compression (STM32L4 128 KB)</p>
+                    <section data-background-image="images/stm32f4.png" data-background-size="100%">
                     </section>
                     <section>
-                        <h3>LiME-TM: Compression (STM32L4)</h3>
+                        <h3>LiME-TM: Model Compiler</h3>
                     </section>
-                </section>
-
-                <section>
-                    <section>
-                        <p>Vanilla TM (12 MB) --> LiME-TM Pruning (ESP32 520 KB) --> LiME-TM Compiler (STM32F4 192 KB) --> LiME-TM Compression (STM32L4 128 KB) --> LiME-TM Bare-metal (STM32F103 20 KB)</p>
-                    </section>
-                    <section>
-                        <h3>LiME-TM: Bare-metal (STM32F103)</h3>
+                    <section data-background-video="images/STM32F4.mp4" data-background-video data-background-video-muted data-menu-title="STM32F4 Demo">
                     </section>
                 </section>
 
                 <section>
-                    <section>
-                        <p>Vanilla TM (12 MB) --> LiME-TM Pruning (ESP32 520 KB) --> LiME-TM Compiler (STM32F4 192 KB) --> LiME-TM Compression (STM32L4 128 KB) --> LiME-TM Bare-metal (STM32F103 20 KB) --> LiME-TM Inference-Only (Arduino 2 KB)</p>
+                    <section data-background-image="images/stm32l4.png" data-background-size="100%">
                     </section>
                     <section>
-                        <h3>LiME-TM: Inference Only (Arduino)</h3>
+                        <h3>LiME-TM: Model Compression</h3>
+                    </section>
+                    <section data-background-video="images/STM32L4.mp4" data-background-video data-background-video-muted data-menu-title="STM32L4 Demo">
+                    </section>
+                </section>
+
+                <section>
+                    <section data-background-image="images/stm32f1.png" data-background-size="100%">
+                    </section>
+                    <section>
+                        <h3>LiME-TM: Bare-metal Support</h3>
+                    </section>
+                    <section data-background-video="images/STM32F1.mp4" data-background-video data-background-video-muted data-menu-title="STM32F103 Demo">
+                    </section>
+                </section>
+
+                <section>
+                    <section data-background-image="images/mcu.png" data-background-size="100%">
+                    </section>
+                    <section>
+                        <h3>LiME-TM: Inference Only</h3>
+                    </section>
+                    <section data-background-video="images/Arduino.mp4" data-background-video data-background-video-muted data-menu-title="Arduino Demo">
                     </section>
                 </section>
 
@@ -123,6 +158,12 @@
                         <p><a href="https://lime-tm.wuhanstudio.uk/">https://lime-tm.wuhanstudio.uk</a></p>
                     </div>
                     <img src="images/qrcode.png" width="25%" />
+                    <div class="fragment" style="font-size: 30px;">
+                        <ul>
+                            <li>On-Device Training: 20 KB SRAM</li>
+                            <li>On-Device Inference: 2 KB SRAM</li>
+                        </ul>
+                    </div>
                     <p style="font-size: 22px;"><i class="fab fa-github"></i> &nbsp; <a href="https://github.com/wuhanstudio/tsetlin.py">Source Code</a></p>
                 </section>
 
